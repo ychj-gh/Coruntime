@@ -126,24 +126,6 @@ inline int rc_axisact(std::vector<int>& params, RCEntityBase* config, RC_SymbolT
 
 inline int rc_tool(std::vector<int>& params, RCEntityBase* config, RC_SymbolTable& symTable) {
 	std::cerr << "LIBCALL : RC_TOOL" << std::endl;
-	
-	tmatrix toolmat;
-    XyzPose toolpos;
-    
-    for(int i = 0; i < 6; i ++)
-       toolpos[i] = symTable.tooladdr[symTable.addrspace[params[0]].v.value_i][i] ;
-    
-    toolmat = TermPos2TransMatrix(toolpos);
-    for(int i = 0; i < 4; ++i) {
-    	for(int j = 0; j < 4; ++j)  {
-                rc_runtime_param.transTool[i][j] = toolmat(i,j);
-        }
-    }
-    
-    for(int i = 0; i < 6; i ++) {
-    	std::cout << toolpos[i] << " ";
-    }
-    std::cout << std::endl;
 	return 0;
 }
 

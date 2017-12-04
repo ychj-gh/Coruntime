@@ -172,26 +172,12 @@ public:
 
 				temp_inst.args[0].apv = p1;
 				/* step 3: specify the second point(the target position) of MOVJ inst  */	
-				if(addrspace[endpointIndex].type == TJTPOSE) {
-					AxisPos_Deg p2(6);
-					int posIndex = addrspace[endpointIndex].v.value_ap;
-					for(int i = 0; i < 6; i ++) {
-						p2[i] = apaddr[posIndex][i];
-					}
-					temp_inst.args[1].apv = p2;
-				} else if(addrspace[endpointIndex].type == TTRPOSE) {
-					AxisPos_Deg p2(6);
-
-					XyzPose Tarpos;
-					int posIndex = addrspace[endpointIndex].v.value_cp;
-					for(int i = 0; i < 6; i ++) {
-						Tarpos[i] = cpaddr[posIndex][i];
-					}
-					tmatrix tarMatrix = TermPos2TransMatrix(Tarpos);
-					calInverseKin_ER4(tarMatrix,rc_runtime_param,p1,p2);
-					temp_inst.args[1].apv = p2;
+				AxisPos_Deg p2(6);
+				int posIndex = addrspace[endpointIndex].v.value_ap;
+				for(int i = 0; i < 6; i ++) {
+					p2[i] = apaddr[posIndex][i];
 				}
-				
+				temp_inst.args[1].apv = p2;
 				/* step 4: insert inst into inst-buffer */
 				inst_buffer_write(temp_inst);	
 				break;

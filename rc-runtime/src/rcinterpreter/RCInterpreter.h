@@ -132,7 +132,6 @@ public:
 		Utility::printfStringPool(stringpool);
 		Utility::printfAddrspace(addrspace);
 		Utility::printfDataIndexMap(dataIndexMap);
-		Utility::printfToolDataSpace(tooladdr);
 	}
 
 public:
